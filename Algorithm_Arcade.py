@@ -69,7 +69,9 @@ if found == False:
 
     
 # 2. BINARY SEARCH
+
 elif st.session_state.algo == "Binary Search":
+    st.header("Binary Search")
     st.write("Checks the middle element of a sorted list and eliminates half the search space with each comparison.")
     
     st.subheader("Sample Code")
@@ -111,6 +113,7 @@ if found == False:
 
 # 3. BUBBLE SORT
 elif st.session_state.algo == "Bubble Sort":
+    st.header("Bubble Sort")
     st.write("Repeatedly swaps adjacent elements if they are out of order.")
     
     st.subheader("Sample Code")
@@ -137,6 +140,7 @@ print(numbers)
 
 # 4. INSERTION SORT
 elif st.session_state.algo == "Insertion Sort":
+    st.header("Insertion Sort")
     st.write("Builds the sorted array step-by-step by placing each item into position.")
     
     st.subheader("Sample Code")

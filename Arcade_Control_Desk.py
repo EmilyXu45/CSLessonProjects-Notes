@@ -33,10 +33,16 @@ PlayerList = [
 QuestList = [
     "collect 10 coins",
     "reach level 10",
-    "unlock the secret room"
+    "unlock the secret room",
+    "",
+    ""
 ]
 
+Next_Node = [1, 2, -1, -1, -1]
+start = 0
+free = 3
 ArchiveList =[]
+
 
 # Menu
 while True:
@@ -107,49 +113,68 @@ while True:
 
     # Quest List
     elif ListChoice ==3:
-        print("Current Quests: ")
-        for i in range(len(QuestList)):
-            print (i+1,".", QuestList[i])
-        print()
         print("1. Add quest to complete")
         print("2. Archive a quest")
-        print("3. View archived list")
+        print("3. View quest list")
+        print()
         EditChoice = int(input("Choose an action: "))
         print("-" * 20)
 
-        if EditChoice == 2:
-            Found = False
+        # Add quests to the free node
+        if EditChoice == 1:
+            NewQuest = input("Enter a new quest to be added: ")
+            QuestList[free] = NewQuest
+            Next_Node[free] = start
+            start = free
+            free = free + 1
+
+            print("Quest added successfully.")
+            print("Current quests: ")
+            for i in range(len(QuestList)):
+                print(QuestList[i])
+            process_complete()
+
+        # Search for quest and remove it
+        elif EditChoice == 2:
+            for i in range(len(QuestList)):
+                print(QuestList[i])
             ArchiveQuest = input("Enter name of the quest to be archived: ").lower()
-            for i in range(len(QuestList)):
-                if QuestList[i] == ArchiveQuest:
+            print("-" * 20)
+
+            pointer = start
+            previous = -1
+            Found = False
+
+            while pointer != -1:
+                if QuestList[pointer].lower() == ArchiveQuest:
                     Found = True
-                    QuestList.remove(ArchiveQuest)
                     break
-            print("Updated Quests: ")
-            for i in range(len(QuestList)):
-                print(i + 1,".", QuestList[i])
-            print(ArchiveQuest, "has been archived")
-            ArchiveList.append(ArchiveQuest)
+                previous = pointer
+                pointer = Next_Node[pointer]
+
+            if Found:
+                ArchiveList.append(QuestList[pointer])
+                if previous == -1:
+                    start = Next_Node[pointer]
+                else:
+                    Next_Node[previous] = Next_Node[pointer]
+                print(QuestList[pointer], "has been archived.")
+                print("Current quests: ")
+                pointer = start
+                while pointer != -1:
+                    print(QuestList[pointer])
+                    pointer = Next_Node[pointer]
+                process_complete()
+                QuestList[pointer] = ""
+                Next_Node[pointer] = free
+                free = pointer
+            else:
+                print("Quest not found.")
+
+        # Traverse linked list
+        else:
+            pointer = start
+            while pointer != -1:
+                print(QuestList[pointer])
+                pointer = Next_Node[pointer]
             process_complete()
-
-        elif EditChoice == 3:
-            print("Achieved Quests: ")
-            for item in ArchiveList:
-                print (item)
-            process_complete()
-
-        elif EditChoice ==1:
-            NewQuest = input ("Add a new quest: ")
-            NewQPosition = int(input("State new quest's position: "))
-            QuestList.insert(NewQPosition-1, NewQuest)
-            print("Updated Quest List: ")
-            for i in range(len(QuestList)):
-                print(i + 1, ".", QuestList[i])
-            process_complete()
-
-    else:
-        exit()
-
-
-
-

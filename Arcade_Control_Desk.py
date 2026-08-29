@@ -30,6 +30,14 @@ PlayerList = [
     "Carl"
 ]
 
+QuestList = [
+    "collect 10 coins",
+    "reach level 10",
+    "unlock the secret room"
+]
+
+ArchiveList =[]
+
 # Menu
 while True:
     print()
@@ -99,12 +107,45 @@ while True:
 
     # Quest List
     elif ListChoice ==3:
+        print("Current Quests: ")
+        for i in range(len(QuestList)):
+            print (i+1,".", QuestList[i])
+        print()
         print("1. Add quest to complete")
-        print("2. Finish/achieve a quest")
-        print("3. Show current list of quests")
+        print("2. Archive a quest")
+        print("3. View archived list")
         EditChoice = int(input("Choose an action: "))
+        print("-" * 20)
 
+        if EditChoice == 2:
+            Found = False
+            ArchiveQuest = input("Enter name of the quest to be archived: ").lower()
+            for i in range(len(QuestList)):
+                if QuestList[i] == ArchiveQuest:
+                    Found = True
+                    QuestList.remove(ArchiveQuest)
+                    break
+            print("Updated Quests: ")
+            for i in range(len(QuestList)):
+                print(i + 1,".", QuestList[i])
+            print(ArchiveQuest, "has been archived")
+            ArchiveList.append(ArchiveQuest)
+            process_complete()
 
+        elif EditChoice == 3:
+            print("Achieved Quests: ")
+            for item in ArchiveList:
+                print (item)
+            process_complete()
+
+        elif EditChoice ==1:
+            NewQuest = input ("Add a new quest: ")
+            NewQPosition = int(input("State new quest's position: "))
+            QuestList.insert(NewQPosition-1, NewQuest)
+            print("Updated Quest List: ")
+            for i in range(len(QuestList)):
+                print(i + 1, ".", QuestList[i])
+            process_complete()
 
     else:
         exit()

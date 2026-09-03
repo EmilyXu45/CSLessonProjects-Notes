@@ -65,16 +65,66 @@ def Battle_Notes(Battle):
     Process_complete()
 
 # 5.Create a random monster encounter
-# User picks their monster by name
-# Algorithm randomly picks a monster
-# Output the monster picked by the machine
-# Battle: Compare force & Defense of both
-# Output which on is stronger (+ stats)
-# Calculate a total
-# Compare total of both monsters
-# Output the winner of the battle
 
-def Monster_Attack(choice)
+def Monster_Attack():
+    found = False
+    # User picks their monster by name
+    MonsterChoice = input ("Enter the name of your monster: ")
+    with open("Monsters.txt", "r") as monster_file:
+        for line in monster_file:
+            parts = line.strip().split(",")
+            Name = parts[1]
+            if MonsterChoice == Name:
+                MonsterForce1 = int(parts[4])
+                MonsterDefence1 = int(parts[5])
+                Choicetotalpower = int(parts[4]) + int(parts[5])
+                found = True
+                break
+    if found == False:
+        print("Monster NOT found!!")
+        return
+
+    with open("Monsters.txt", "r") as monster_file:
+        next (monster_file)
+        # Strips any spaces/empty lines, group monster descriptions and add them to a list Monster
+        Monster = [line.strip() for line in monster_file if line.strip()]
+        # Algorithm randomly picks a monster
+        if Monster:
+            random_monster = random.choice(Monster)
+            parts = random_monster.split(",")
+            monster_name = parts[1]
+            # Output the monster picked by the machine
+            print ("The machine has picked: ", monster_name)
+            print("-" * 20)
+            MonsterForce2 = int(parts[4])
+            MonsterDefence2 = int(parts[5])
+            Randomtotalpower = int(parts[4]) + int(parts[5])
+            # Battle: Compare force & Defense of both
+            # Output which on is stronger (+ stats)
+            print("User's choice: ", Name, "has a power of", MonsterForce1)
+            print("Computer's choice: ", monster_name, "has a power of", MonsterForce2)
+            if MonsterForce1 > MonsterForce2:
+                print(Name, "is more powerful")
+            else:
+                print(monster_name,"is more powerful")
+
+            print("User's choice: ", Name, "has a defense of", MonsterDefence1)
+            print("Computer's choice: ", monster_name, "has a defense of", MonsterDefence2)
+            if MonsterDefence1 > MonsterDefence2:
+                print(Name, "is stronger at defense")
+            else:
+                print(monster_name, "is stronger at defense")
+            # Compare total of both monsters
+            # Output the winner of the battle
+            if Choicetotalpower > Randomtotalpower:
+                print(Name, "is stronger overall!")
+                print("-" * 20)
+                print ("You win!")
+            else:
+                print(monster_name, "is stronger overall")
+                print("-" * 20)
+                print("You lose!")
+    Process_complete()
 
 def Menu():
     while True:
@@ -96,6 +146,10 @@ def Menu():
         elif Menu_choice == 4:
             Battle = input ("Enter battle notes")
             Battle_Notes((Battle))
+        elif Menu_choice ==5:
+            Monster_Attack()
+        else:
+            exit()
 
 Menu()
 

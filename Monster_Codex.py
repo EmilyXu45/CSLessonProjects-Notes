@@ -6,8 +6,6 @@
 # There are no direct tests for this level.
 # Build something useful or fun using the loaded Monsters.txt file.
 # Ideas:
-# 3. Save favourite monsters to favourites.txt.
-# 4. Append battle notes to battle_log.txt.
 # 5. Create a random monster encounter.
 
 
@@ -59,6 +57,25 @@ def Fav_Monsters(Monster):
      favourites_file.write("\n")
     Process_complete()
 
+# 4. Append battle notes to battle_log.txt.
+def Battle_Notes(Battle):
+    with open("Battles.txt", "a") as battles_file:
+     battles_file.write(Battle)
+     battles_file.write("\n")
+    Process_complete()
+
+# 5.Create a random monster encounter
+# User picks their monster by name
+# Algorithm randomly picks a monster
+# Output the monster picked by the machine
+# Battle: Compare force & Defense of both
+# Output which on is stronger (+ stats)
+# Calculate a total
+# Compare total of both monsters
+# Output the winner of the battle
+
+def Monster_Attack(choice)
+
 def Menu():
     while True:
         print("1. Print every monster")
@@ -76,6 +93,9 @@ def Menu():
         elif Menu_choice ==3:
             Fav=input("Enter the name of your favourite monster: ")
             Fav_Monsters(Fav)
+        elif Menu_choice == 4:
+            Battle = input ("Enter battle notes")
+            Battle_Notes((Battle))
 
 Menu()
 

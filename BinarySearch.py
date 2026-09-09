@@ -6,7 +6,7 @@ Look carefully, the Linear search is performing very well right now, so
 why does everyone recommend a Binary Search?
 How could you make this a fairer comparison?
 """
-
+'''
 from random import randint
 import datetime
 
@@ -67,3 +67,34 @@ start_time = datetime.datetime.now()  # Starts the timer, by putting the time in
 print("position",linear_search(my_list, num_to_find))
 time_taken = datetime.datetime.now() - start_time  # Current time - start time
 print(time_taken)  # Printing the time it took
+'''
+
+list = [1,2,3,4,5,6,7,8,9]
+# Sorted list
+low = 0
+# First index
+high = len(list)-1
+# low and high indicates the index of the element in the list, index starts on 0
+
+#Binary search
+found = False
+search_value = int(input("Value to search for: "))
+while found == False and low <= high:
+    # when low <= high: there are still items in between
+    middle = (high + low) // 2
+    # Floor division to obtain an integer
+    # In the loop so that the middle changes each time
+    if list[middle] == search_value:
+        found = True
+    elif search_value < list[middle]:
+        high = middle -1
+    else:
+        low = middle +1
+        # Eliminate half of the list
+if found == True:
+    print ("found")
+else:
+    print("Not found")
+# Olog(N) complexity because the search space is halved each time
+# log (N) is the maximum number of comparisons
+# The time taken to search for an item increases linearly as the number of items increases exponentially

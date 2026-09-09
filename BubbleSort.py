@@ -29,3 +29,6 @@ for pass_num in range (len(list)):
         break
         # break out of the loop for the passes
 print(list)
+
+# Time complexity O(N^2) because there are n comparisons for each loop
+# Time taken to sort the list will grow linearly in direct proportion to the square of N (the number of elements in the list)

@@ -11,3 +11,14 @@ def push(item):
         print (item, "pushed")
     else:
         print ("Stack is full, cannot push")
+
+def pop():
+    global TopPointer, BasePointer
+    if BasePointer <= TopPointer: # Check whether the stack contains at least 1 item, if the TopPointer is above the BasePointer then the stack is not empty
+        item_removed = Stack[TopPointer] # Store the value that is going to be removed
+        Stack[TopPointer] = None # Replace the value with an empty slot
+        TopPointer -= 1 # Move the TopPointer so that it points to the previous value
+        print(item_removed, "popped")
+    else:
+        print("Stack is empty, cannot pop")
+

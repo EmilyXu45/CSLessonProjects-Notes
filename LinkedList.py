@@ -28,7 +28,8 @@ while pointer != -1:
     pointer = next_node[pointer]
 '''
 
-data = ["ant", "bee", "cat", "dog"]
+# Searching through linked list
+data=["ant", "bee", "cat", "dog"]
 next_node = [2, -1, 3, 1]
 start = 0
 target = "dog"

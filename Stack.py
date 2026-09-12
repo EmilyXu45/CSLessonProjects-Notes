@@ -4,7 +4,7 @@ TopPointer = BasePointer - 1 # The stack is initially empty, when the first item
 StackFull = len(Stack)-1 # This indicates the last available position (NOT the size of the stack)
 
 def push(item):
-    global TopPointer, StackFull
+    global TopPointer, Stack
     if TopPointer < StackFull: # The stack still has space; the last position has not been reached
         Stack[TopPointer + 1]= item # Add the data
         TopPointer += 1 # Update the pointer
@@ -13,7 +13,7 @@ def push(item):
         print ("Stack is full, cannot push")
 
 def pop():
-    global TopPointer, BasePointer
+    global TopPointer, Stack
     if BasePointer <= TopPointer: # Check whether the stack contains at least 1 item, if the TopPointer is above the BasePointer then the stack is not empty
         item_removed = Stack[TopPointer] # Store the value that is going to be removed
         Stack[TopPointer] = None # Replace the value with an empty slot

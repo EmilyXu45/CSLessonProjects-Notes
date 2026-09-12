@@ -11,7 +11,7 @@ def enqueue(item):
     global RearPointer, FrontPointer, QueueLength, Queue, QueueFull
     # Move the pointers first
     if QueueLength < QueueFull: # if there are still space in the queue
-        if RearPointer > QueueFull: # When RearPointer = QueueFull, the pointer must be at the end of the queue, but since there still spaces, this means that a circular queue must be implemented to loop back to the start.
+        if RearPointer == QueueFull-1: # When RearPointer = QueueFull-1, the pointer must be at the end of the queue, but since there still spaces, this means that a circular queue must be implemented to loop back to the start.
             RearPointer = 0 # Looping back
         else:
             RearPointer += 1 # when the end is not reached, the pointer can just move to the next position.

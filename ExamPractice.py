@@ -15,6 +15,27 @@ def Enqueue(item):
     else:
         return False
 
-for i in range (1,12):
-    Enqueue(i)
+def Dequeue ():
+    global queue, headpointer, tailpointer, queuelength, queuefull
+    if queuelength != 0:
+        removed = queue[headpointer]
+        queuelength -= 1
+        queue[headpointer] = None
+        if headpointer == queuefull -1:
+            headpointer = 0
+        else:
+            headpointer += 1
+
+        return removed
+    else:
+        return -1
+
+for i in range(6):
+    item = int(input("Enter integer: "))
+    Enqueue(item)
+
 print (queue)
+for i in range (4):
+    removed = Dequeue()
+    print (removed)
+print(queue)

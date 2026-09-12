@@ -4,7 +4,7 @@ TopPointer = BasePointer - 1 # The stack is initially empty, when the first item
 StackFull = len(Stack)-1 # This indicates the last available position (NOT the size of the stack)
 
 def push(item):
-    global TopPointer, Stack
+    global TopPointer, Stack # only the variables/pointers/lists that changes in the procedure
     if TopPointer < StackFull: # The stack still has space; the last position has not been reached
         Stack[TopPointer + 1]= item # Add the data
         TopPointer += 1 # Update the pointer

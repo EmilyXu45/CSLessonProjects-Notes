@@ -1,0 +1,1 @@
+Queue = [None for i in range(10)]

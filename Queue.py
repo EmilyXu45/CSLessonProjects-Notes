@@ -39,3 +39,8 @@ def dequeue():
     else:
         print("Queue is empty, cannot dequeue")
 
+for i in range (10):
+    enqueue(i)
+dequeue()
+dequeue()
+print(Queue)

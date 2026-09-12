@@ -1,6 +1,6 @@
 # Declaring global variables and initialising pointers
 queue = [-1 for i in range(11)]
-headpointer = -1
+headpointer = 0
 tailpointer = -1
 queuelength = 0
 queuefull = len(queue)
@@ -33,9 +33,7 @@ def Dequeue ():
 for i in range(6):
     item = int(input("Enter integer: "))
     Enqueue(item)
-
-print (queue)
 for i in range (4):
     removed = Dequeue()
     print (removed)
-print(queue)
+

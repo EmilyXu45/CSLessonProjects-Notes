@@ -27,10 +27,12 @@ def dequeue():
     global RearPointer, FrontPointer, QueueLength, Queue, QueueLength
 
     if QueueLength != 0: # Queue is not empty
+        # Remove the data
         item_removed = Queue[FrontPointer] # Save the item that was removed
         Queue[FrontPointer] = None # Free up that slot
         QueueLength -= 1  # Decrease the queue size
         print(item_removed, "was dequeued")
+
         # Update the pointer to the position of the next data to be removed
         if FrontPointer == QueueFull - 1: # If the current removed data was at the last position of the queue, then the next data to be removed must be at the start of the queue (at index 0) because a circular queue is implemented.
             FrontPointer = 0

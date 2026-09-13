@@ -106,5 +106,19 @@ def LoadSavedGame():
             Push(cards)
     return score, Card1
 
-
+# Task g - Main menu
+def MainMenu():
+    print("HIGHER OR LOWER")
+    print("1. New Game")
+    print("2. Load Game")
+    print("3. Quit")
+    choice = int(input("Enter choice: "))
+    while choice not in [1,2,3]:
+        choice = int(input("Invalid choice, enter again: "))
+    if choice == 1:
+        PlayGame()
+    elif choice == 2:
+        LoadSavedGame()
+    else:
+        print("Game over, bye-bye!")
 

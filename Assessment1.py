@@ -99,7 +99,7 @@ def LoadSavedGame():
     TopPointer = BottomPointer - 1
 
     with open("savegame.txt", "r") as file:
-        lines = [line.strip() for line in file.readlines()] # Read and remove white space for every line
+        lines = [line.strip() for line in file.readlines()] # Read and remove white space/ new line for every line
         score = int(lines[0])
         Card1 = lines[1]
         for cards in lines[2:]:

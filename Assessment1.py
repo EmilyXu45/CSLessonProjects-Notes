@@ -84,12 +84,27 @@ def PlayGame():
 
     print("Game Over! Final Score: ", score)
 
+# Task e - Save the game
+
 def SaveGame(score, current_card):
     with open("savegame.txt", "w") as file:
         file.write(str(score) + "\n")
         file.write(current_card + "\n")
         for i in range(BottomPointer, TopPointer + 1):
-            if stack[i] is not None:  # Ensure only valid card strings are written
-                file.write(stack[i] + "\n")
+            file.write(stack[i] + "\n")
+
+# Task f - Load a saved game
+def LoadSavedGame():
+    global TopPointer
+    TopPointer = BottomPointer - 1
+
+    with open("savegame.txt", "r") as file:
+        lines = [line.strip() for line in file.readlines()] # Read and remove white space for every line
+        score = int(lines[0])
+        Card1 = lines[1]
+        for cards in lines[2:]:
+            Push(cards)
+    return score, Card1
+
 
 

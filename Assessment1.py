@@ -10,13 +10,12 @@ def Push(card):
     if TopPointer < stackFull:
         TopPointer += 1
         stack[TopPointer] = card
-        print(card, "pushed")
     else:
         print("Stack is full, cannot push card")
 
 def Pop():
     global TopPointer
-    if TopPointer < BottomPointer:
+    if TopPointer >= BottomPointer:
         removed = stack[TopPointer]
         stack[TopPointer] = None
         TopPointer -= 1
@@ -41,8 +40,56 @@ def LoadCards():
 # Task c - Display a card
 
 def DisplayCard(Card):
-    parts = Card.strip().split(",")
+    parts = Card.strip().split(" ")
     rank = parts [0]
     suit = parts[1]
     print(rank, "of", suit)
+
+# Task d - Play the game
+
+def PlayGame():
+    LoadCards()
+    score = 0
+
+    if TopPointer < BottomPointer:
+        return "No cards available to play."
+
+    Card1 = Pop()
+
+    while TopPointer >= BottomPointer:
+        DisplayCard(Card1)
+        Card1Value = int(Card1.split(" ")[2]) #Taking the value part
+
+        choice = input("Will the next card be higher or lower? (H/L) or enter 'Q' to quit: ").upper()
+
+        if choice == 'Q':
+            break
+        elif choice not in ['H', 'L']:
+            print("Invalid input. Please enter H, L, or Q.")
+            continue
+
+        Card2 = Pop()
+        DisplayCard(Card2)
+        Card2Value = int(Card2.split(" ")[2])
+
+        if Card2 > Card1 and choice == 'H':
+            print("Correct!")
+            score +=1
+        elif Card2 < Card1 and choice == 'L':
+            print("Correct!")
+            score += 1
+        else:
+            print("Incorrect!")
+        Card1 = Card2
+
+    print("Game Over! Final Score: ", score)
+
+def SaveGame(score, current_card):
+    with open("savegame.txt", "w") as file:
+        file.write(str(score) + "\n")
+        file.write(current_card + "\n")
+        for i in range(BottomPointer, TopPointer + 1):
+            if stack[i] is not None:  # Ensure only valid card strings are written
+                file.write(stack[i] + "\n")
+
 

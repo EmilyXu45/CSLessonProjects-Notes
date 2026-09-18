@@ -21,3 +21,4 @@ print(capital)
 # loop through the dictionary so that each country and its capital is printed.
 for country in capitals:
     print(country, "->", capitals[country])
+

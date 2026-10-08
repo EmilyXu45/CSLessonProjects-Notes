@@ -1,0 +1,17 @@
+Time complexity of different searches:
+Linear search:
+O(N): the time taken to search through this list will increase linearly in proportion to n, the number of items in the data.
+For a linear search, the maximum number of searches would be n
+
+Binary search:
+Olog(N) complexity because the search space is halved each time
+log (N) is the maximum number of comparisons
+The time taken to search for an item increases linearly as the number of items increases exponentially
+
+Bubble sort:
+Time complexity O(N^2) because there are n comparisons for each loop
+Time taken to sort the list will grow linearly in direct proportion to the square of N (the number of elements in the list)
+
+Insertion sort:
+Time complexity: O(N^2)
+As the list grow linearly, the execution time grows quadratically.

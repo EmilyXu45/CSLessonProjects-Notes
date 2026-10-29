@@ -71,6 +71,7 @@ search_year = input("Enter a year: ")
 found = False
 
 with open("historical_events.tsv", "r") as event_file:
+    # Removes the white space by moving the pointer to the next line
     header = event_file.readline()
     for line in event_file:
         parts = line.strip().split("\t")

@@ -75,3 +75,25 @@ bits = int(input("Bits: "))
 print(gray(bits))
 
 '''
+move_counter = 0
+def hanoi(disk, start, helper, end):
+    # Global variable so that it can be modified in the function and used outside too
+    global move_counter
+    if disk == 1:
+        # when there is only one disk in the first tower, it is moved directly to the final tower
+        print("Move disk from: ", start, "to", end)
+        move_counter += 1
+        # add 1 to the move_counter: this is counting the move for when there is only one disk in the tower
+    else:
+        # The base case would be having two disks on the first tower, so consider this case
+        # step 1: start --> helper (end column/ tower is the temporary holder)
+        hanoi(disk-1, start, end, helper)
+        # step 2: start --> end: Move the final disk from the start tower to the end tower
+        # After each move, the counter should increment by 1
+        print("Move disk from: ", start, "to", end)
+        move_counter += 1
+        # step 3: helper --> end: Move the "mini tower" from the helper tower to the end tower
+        hanoi (disk-1, helper, start, end)
+
+hanoi(3, "A", "B", "C")
+print("Total number of moves: ", move_counter)

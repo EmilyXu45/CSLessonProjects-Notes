@@ -86,3 +86,42 @@ for data in monster_data:
 # The final loop iterates through the list of objects and calls the .print_me() method on each one.
 for monster in monster_collection:
     monster.print_me()
+
+class Monster2:
+    def __init__(self, id, Name, Origin, Description, Attack, Magical_Force, Magical_Defence, Defence, Intelligence, Health):
+        self.id = id
+        self.Name = Name
+        self.Origin = Origin
+        self.Description = Description
+        self.Attack = Attack
+        self.Magical_Force = Magical_Force
+        self.Magical_Defence = Magical_Defence
+        self.Defence = Defence
+        self.Intelligence = Intelligence
+        self.Health = Health
+
+    def __repr__(self):
+        return self.Name
+
+
+monster_collection2 = []
+
+#Adding a monster to the list
+monster_collection2.append(Monster2(1, "Bog Monster", "The bogs of Lincolnshire",
+    "A foul monster that sucks people down into the bog!", 75, 12, 15, 65, 12, 99))
+
+# Prints only the name of the monster because of __repr__ method in Monster2
+# self = monster_collect[0]
+print(monster_collection2[0])
+
+import os
+
+def read_monsters():
+    try:
+        with open('Monsters.txt') as f:
+            for line in f:
+                parts = line.split(",")
+    except OSError:
+        print("Sorry, could not find the file. Make sure it is in the correct directory.")
+        print("The current directory is", os.getcwd())
+
